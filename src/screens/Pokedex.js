@@ -1,6 +1,6 @@
 import {SafeAreaView, Text } from 'react-native'
 import React, {useState, useEffect} from 'react'
-import PokemonTemplate from './PokemonTemplate.js';
+import PokemonList from '../components/PokemonList.js';
 import { fetchPokemon, getPokemonApi} from '../api/dataFetch.js';
 
 export default function PokedexScreen() {
@@ -36,7 +36,7 @@ export default function PokedexScreen() {
   return (
     <SafeAreaView>
       <Text style={{fontSize:35}}>Pokedex Screen</Text>
-      <PokemonTemplate />
+      <PokemonList pokemons={pokemons}/>
     </SafeAreaView>
   );
 };
