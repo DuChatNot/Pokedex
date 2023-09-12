@@ -1,5 +1,5 @@
 const API = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=0`;
-import { limit } from '../screens/Pokedex'
+export const limit = 20
 
 
 export default async function fetchPokemonData () {

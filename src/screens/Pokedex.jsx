@@ -1,11 +1,10 @@
-import {SafeAreaView, Text } from 'react-native'
+import {SafeAreaView, Text, View } from 'react-native'
 import React, {useState, useEffect} from 'react'
-import PokemonTemplate from './PokemonTemplate.js';
-
-import fetchPokemonData from '../api/APIfetch.js';
+import PokemonTemplate from './PokemonTemplate';
+import { limit } from '../api/APIfetch';
+import fetchPokemonData from '../api/APIfetch';
 
 const pArray = [];
-export const limit = 20;
 
 export default function PokedexScreen() {
   const [pokemons, setPokemon] = useState([]);
@@ -19,7 +18,7 @@ export default function PokedexScreen() {
     const res = await fetchPokemonData();
 
     for (let i = 0; i<limit; i++){
-      const pokemData = res.map(p => ({
+      const pokemData = res.map(p => ({ 
         id: p.id,
         name: p.name,
         type: p.types[0].type.name,
@@ -36,8 +35,6 @@ export default function PokedexScreen() {
     <SafeAreaView>
       <Text style={{fontSize:35}}>Pokedex Screen</Text>
       <PokemonTemplate />
-      <Text>Data: </Text>
-      <Text>{pArray[0]}</Text>
     </SafeAreaView>
   );
 };
