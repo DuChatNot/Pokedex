@@ -18,7 +18,9 @@ export default function TabNav() {
 
         <Tab.Screen name='Pokedex' component={PokedexScreen} options={{
           tabBarLabel: 'Pokedex',
-          tabBarIcon: () => renderPokeball()
+          tabBarIcon: () => renderPokeball(),
+          title: '',
+          headerTransparent: true
         }}/>
 
         <Tab.Screen name='Account' component={AccountScreen} options={{
