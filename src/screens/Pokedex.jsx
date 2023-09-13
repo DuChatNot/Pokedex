@@ -33,7 +33,6 @@ export default function PokedexScreen() {
 
   return (
     <SafeAreaView>
-      <Text style={{fontSize:35}}>Pokedex Screen</Text>
       <PokemonList pokemons={pokemons}/>
     </SafeAreaView>
   );

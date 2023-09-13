@@ -1,14 +1,17 @@
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import React from 'react'
+import PokemonCard from './PokemonCard'
 
 export default function PokemonList({pokemons}) {
+
   return (
     <>
     <FlatList
     contentContainerStyle={styles.list}
     data={pokemons}
-    keyExtractor={(p) => p.id}
-    renderItem={({item}) => <Text>{item.name}</Text>}
+    numColumns={2}
+    keyExtractor={(p) => String(p.id)}
+    renderItem={({item}) => <PokemonCard data = {item}/>}
     />
     </>
   )
@@ -16,6 +19,6 @@ export default function PokemonList({pokemons}) {
 
 const styles = StyleSheet.create({
   list:{
-    paddingHorizontal: 5
+    paddingHorizontal: 3
   }
 })
