@@ -5,10 +5,12 @@ import { fetchPokemon, getPokemonApi} from '../api/dataFetch.js';
 
 export default function PokedexScreen() {
   const [pokemons, setPokemon] = useState([]);
+  const [nextUrl, setNextUrl] = useState(null);
 
   const loadPokemon = async () =>{ // Recibe la informacion de la función importada getPokemonApi() (asíncrona)
     try{
-      const res = await fetchPokemon(); // res = Objeto de objetos y propiedad 'results' que contiene la lista de pokemons + URLs
+      const res = await fetchPokemon(nextUrl); // res = Objeto de objetos y propiedad 'results' que contiene la lista de pokemons + URLs
+      setNextUrl(res.next) //.next es la propiedad contenida dentro de "res" que indica el punto final del fetch solicitado
       const pArray = [];
 
       for await(const p of res.results){ // Ciclo 'for' asíncrono que recorre la lista de pokemons + urls
@@ -35,7 +37,9 @@ export default function PokedexScreen() {
   
   return (
     <SafeAreaView>
-      <PokemonList pokemons={pokemons}/>
+      <PokemonList pokemons={pokemons} 
+      load={loadPokemon}
+      isNext={nextUrl}/>
     </SafeAreaView>
   );
 };
