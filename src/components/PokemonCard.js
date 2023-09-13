@@ -1,11 +1,14 @@
-import { View, Text, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
+import { View, Text, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 import getColor from '../utils/getColorType';
 
 export default function PokemonCard({data}) {
 
+    const nav = useNavigation();
+
     const touchPokemon = () => {
-        console.log(data.name)
+        nav.navigate('Pokemon',{id:data.id});
     }
     const pokemonColor = getColor(data.type)
     const bgStyle = {backgroundColor: pokemonColor, ...styles.bgStyle}; // Merge de StyleSheet
@@ -15,7 +18,7 @@ return (
         <View style={styles.card}>
             <View style={styles.in_card}>
                 <View style={bgStyle}>
-                    <Text style={styles.order}>#{`${data.order}`.padStart(3,0)}</Text>
+                    <Text style={styles.order}>#{`${data.id}`.padStart(3,0)}</Text>
                     <Image source={{uri: data.image}} style={styles.image}/>
                     <Text style={styles.name}>{data.name}</Text>
                 </View>

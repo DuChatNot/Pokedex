@@ -7,23 +7,23 @@ export default function PokedexScreen() {
   const [pokemons, setPokemon] = useState([]);
   const [nextUrl, setNextUrl] = useState(null);
 
-  const loadPokemon = async () =>{ // Recibe la informacion de la función importada getPokemonApi() (asíncrona)
+  const loadPokemon = async () =>{
     try{
-      const res = await fetchPokemon(nextUrl); // res = Objeto de objetos y propiedad 'results' que contiene la lista de pokemons + URLs
-      setNextUrl(res.next) //.next es la propiedad contenida dentro de "res" que indica el punto final del fetch solicitado
+      const res = await fetchPokemon(nextUrl); 
+      setNextUrl(res.next) 
       const pArray = [];
 
-      for await(const p of res.results){ // Ciclo 'for' asíncrono que recorre la lista de pokemons + urls
-        const pokemonData = await getPokemonApi(p.url); // Hace fetch a la url de cada pokemon contenido en la lista 'res' y la guarda en la variable pokemonData
-        pArray.push({ //Se guarda en el array 'pArray' la info seleccionada de la variable 'pokemonData'
+      for await(const p of res.results){ 
+        let i = 0;
+        const pokemonData = await getPokemonApi(p.url); 
+        pArray.push({ 
           id: pokemonData.id,
           name: pokemonData.name,
+          // order: pokemonData.order,
           type: pokemonData.types[0].type.name,
-          order: pokemonData.order,
           image: pokemonData.sprites.other[`official-artwork`].front_default
         })
       }
-      console.log(pArray);
       setPokemon([...pokemons, ...pArray]);
     } catch (err){
       console.log(err)

@@ -2,7 +2,6 @@ import {API} from '../utils/constants';
 
 export async function fetchPokemon (nextUrl) {
     try {                             
-        
         const url = `${API}/pokemon?limit=20&offset=0`;
         const response = await fetch(nextUrl || url);
         const res = await response.json(); // Objeto de objetos con propiedad 'results' que contiene la lista de pokemons + url
