@@ -1,12 +1,9 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState }from "react";
 const API = `https://pokeapi.co/api/v2`;
 export const limit = 20
 
 
 export default async function fetchPokemonData () {
-    const urlList = [];
-    const pokemData = [];
 
     const fetchData = async (url) => {
         const d = await fetch(url);
@@ -14,6 +11,7 @@ export default async function fetchPokemonData () {
         return data;
     }
 
+    const urlList = [];
     const url = `${API}/pokemon?limit=${limit}&offset=0`
     const response = await fetch(url);
     const res = await response.json();
@@ -23,10 +21,12 @@ export default async function fetchPokemonData () {
         urlList.push(url);
     };
 
+    const pokemData = [];
     for(let i = 0; i<limit; i++)
     {
         const data = await fetchData(urlList[i]);
         pokemData.push(data);
     }
+    setRealI(realI+=20)
     return pokemData;
 };
