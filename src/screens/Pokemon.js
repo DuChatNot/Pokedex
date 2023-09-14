@@ -1,12 +1,28 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+import { ScrollView, Text } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { pokemonDetails } from '../api/dataFetch';
+import Header from '../components/PokemonStats/Header';
 
-export default function Pokemon({navigation, route}) { //route propiedad pertenenciente al objeto (pokemon) proveniente de la API
+export default function Pokemon(props) { //route = propiedad pertenenciente al objeto (pokemon) proveniente de la API
 
-  console.log(route)
+  const {navigation, route:{params}} = props;
+  const [pData, setpData] = useState(null)
+
+  useEffect(() => {
+    (async ()=> {
+      try{
+        const response = await pokemonDetails(params.id)
+        setpData(response);
+      } catch(err){navigation.goBack();}
+    })();
+  }, [params])
+
+    if(!pData) return null;
   return (
-    <View>
-      <Text>Pokemon Details</Text>
-    </View>
+    <ScrollView>
+      <Header name={pData.name} order={pData.id} 
+      image={pData.sprites.other[`official-artwork`].front_default} 
+      type={pData.types[0].type.name}/>
+    </ScrollView>
   )
 };

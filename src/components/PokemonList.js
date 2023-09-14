@@ -3,8 +3,6 @@ import React from 'react'
 import PokemonCard from './PokemonCard'
 
 export default function PokemonList({pokemons, load, isNext}) {
-
-  console.log(Platform.OS)
   const nextLoad = () => {
     load();
   };

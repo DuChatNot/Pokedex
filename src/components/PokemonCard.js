@@ -32,7 +32,6 @@ return (
 const styles = StyleSheet.create({
     card:{
         flex:1,
-        padding: 2,
         margin: 2,
         height: 130,
         backgroundColor:'lightgray',
@@ -40,11 +39,11 @@ const styles = StyleSheet.create({
     },
     in_card: {
         flex: 1,
-        padding: 5,
+        padding: 3,
     },
     bgStyle:{
         flex: 1,
-        padding: 10,
+        padding: 8,
         borderRadius: 15,
     },
 
