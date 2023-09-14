@@ -8,6 +8,7 @@ const pArray = [];
 
 export default function PokedexScreen() {
   const [pokemons, setPokemon] = useState([]);
+  const [nextUrl, setNextUrl] = useState([null]);
 
   useEffect(() => { 
     (async () => {
@@ -17,13 +18,13 @@ export default function PokedexScreen() {
 
   const loadPokemon = async () =>{ 
     const res = await fetchPokemonData();
+    setNextUrl(res.next)
 
     for (let i = 0; i<limit; i++){
       const pokemData = res.map(p => ({ 
         id: p.id,
         name: p.name,
         type: p.types[0].type.name,
-        order: p.order,
         image: p.sprites.other[`official-artwork`].front_default
       }))
       pArray.push(pokemData[i]);
@@ -33,7 +34,7 @@ export default function PokedexScreen() {
 
   return (
     <SafeAreaView>
-      <PokemonList pokemons={pokemons}/>
+      <PokemonList pokemons={pokemons} load={loadPokemon}/>
     </SafeAreaView>
   );
 };

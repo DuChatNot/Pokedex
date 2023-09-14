@@ -16,7 +16,7 @@ return (
         <View style={styles.mainContainer}>
             <View style={BK}>
                 <Text style={styles.name}>{data.name}</Text>
-                <Text style={styles.order}>#{`${data.order}`.padStart(3,0)}</Text>
+                <Text style={styles.order}>#{`${data.id}`.padStart(3,0)}</Text>
                 <Image source={{uri:data.image}} style={styles.image}/>
             </View>
         </View>
