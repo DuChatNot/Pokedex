@@ -10,11 +10,9 @@ export default function PokedexScreen() {
   const loadPokemon = async () =>{
     try{
       const res = await fetchPokemon(nextUrl); 
-      setNextUrl(res.next) 
       const pArray = [];
 
       for await(const p of res.results){ 
-        let i = 0;
         const pokemonData = await getPokemonApi(p.url); 
         pArray.push({ 
           id: pokemonData.id,
@@ -24,7 +22,8 @@ export default function PokedexScreen() {
           image: pokemonData.sprites.other[`official-artwork`].front_default
         })
       }
-      setPokemon([...pokemons, ...pArray]);
+      setPokemon([...pokemons, ...pArray])
+      setNextUrl(res.next) 
     } catch (err){
       console.log(err)
     };
