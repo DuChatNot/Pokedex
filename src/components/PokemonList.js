@@ -17,7 +17,7 @@ export default function PokemonList({pokemons, load, isNext}) {
       keyExtractor={(p) =>String(p.id)}
       renderItem={({item}) => <PokemonCard data={item}/>}
       onEndReached={isNext && nextLoad}
-      onEndReachedThreshold={0.1}
+      onEndReachedThreshold={0.3}
       ListFooterComponent={
         isNext && (
           <ActivityIndicator size='large' style={styles.spinner} color='#AEAEAE'/>

@@ -1,5 +1,4 @@
 import {API} from '../utils/constants';
-import React, {useState} from 'react';
 let firstrequest = true;
 
 export async function fetchPokemon (nextUrl) {
@@ -15,7 +14,7 @@ export async function fetchPokemon (nextUrl) {
             response = await fetch(nextUrl)
         }
         //const response = await fetch(nextUrl || url);
-        const res = await response.json(); // Objeto de objetos con propiedad 'results' que contiene la lista de pokemons + url
+        const res = await response.json(); 
         return res;
 
     } catch (err) {
