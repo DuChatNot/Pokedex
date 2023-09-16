@@ -3,9 +3,11 @@ import React from 'react'
 import LoginForm from '../components/Auth/LoginForm';
 import UserData from '../components/Auth/UserData';
 
+import UseAuth from '../Hooks/UseAuth';
+
 export default function AccountScreen() {
 
-  const auth = null;
+  const {auth} = UseAuth();
 
   return (
     <View>

@@ -1,9 +1,13 @@
 import { View, Text, StyleSheet, TextInput, Button, Keyboard } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import {useFormik} from 'formik';
 import * as yup from 'yup';
+import {user, userDetails} from '../../utils/userDB'
+import useAuth from '../../Hooks/UseAuth'
 
 export default function LoginForm() {
+  const [error, setError] = useState('');
+  const { login } = useAuth();
 
   const valSchema = yup.object().shape({
     username: yup.string().required('Username missing'),
@@ -15,7 +19,13 @@ export default function LoginForm() {
     validationSchema: valSchema,
     validateOnChange: false,
     onSubmit: (formValue) => {
-      console.log(formValue)
+      const {username, password} = formValue;
+
+      if(username != user.username || password != user.password){
+        setError('User or Password incorrect')
+      } else {
+        login(userDetails)
+      }
     }
   })
 
@@ -43,6 +53,8 @@ export default function LoginForm() {
 
       <Text style={styles.error}>{formik.errors.username}</Text>
       <Text style={styles.error}>{formik.errors.password}</Text>
+
+      <Text style={styles.error}>{error}</Text>
     </View>
   )
 }
