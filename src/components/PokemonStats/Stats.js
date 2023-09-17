@@ -8,11 +8,11 @@ export default function Stats({stats}) {
 
     let color;
     if (num > 69){
-      color = '#00ac17'
+      color = '#48CFB2'
     } else if (num > 39 && num < 70){
-      color = '#ffA500'
+      color = '#FFCE4B'
     } else {
-      color = '#ff3e3e'
+      color = '#C03028'
     }
 
     return {

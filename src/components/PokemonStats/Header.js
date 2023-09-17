@@ -8,10 +8,6 @@ export default function Header({name,order,image,type,data}) {
 
     const bgStyle = [{backgroundColor: color, ...styles.bg}] 
 
-    const imageurl = {uri : image}
-    console.log('image? --> ')
-    console.log(imageurl)
-
     return (
     <>
         <View style={bgStyle}/>

@@ -1,4 +1,5 @@
 export const API = 'https://pokeapi.co/api/v2/';
+export const FAV_STORAGE = 'favorites';
 
 export const POKEMON_TYPE_COLORS = {
     normal: "#A8A878",
